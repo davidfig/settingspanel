@@ -1,5 +1,5 @@
 // SettingsPanel - a debug panel for changing game settings
-// creates hideable UI to change game settings during runtime
+// hideable UI to change game settings during runtime
 
 let _id = 1;
 
@@ -67,6 +67,7 @@ class SettingsPanel
             'userSelect': 'none'
         };
         this._setStyles(div, styles, options.style);
+        return div;
     }
 
     _buttonCallback()
@@ -121,8 +122,13 @@ class SettingsPanel
         }
         div.input.defaultValue = typeof options.original !== 'undefined' ? options.original : null;
         div.input.onchange = this._inputCallback.bind(div);
+        return div;
     }
 
+    /**
+     * input callback function with value
+     * @private
+     */
     _inputCallback()
     {
         this.callback(this.input.value);
@@ -177,6 +183,9 @@ class SettingsPanel
         this.top.innerHTML = this.open ? '&#9660;' : '&#9650;';
     }
 
+    /**
+     * hides the SettingsPanel
+     */
     hide()
     {
         this.open = false;
@@ -184,6 +193,9 @@ class SettingsPanel
         this._topShow();
     }
 
+    /**
+     * shows the SettingsPanel
+     */
     show()
     {
         this.open = true;
@@ -191,6 +203,10 @@ class SettingsPanel
         this._topShow();
     }
 
+    /**
+     * toggle top when pressed
+     * @private
+     */
     _toggleTop()
     {
         this.open = !this.open;

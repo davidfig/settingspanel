@@ -1,31 +1,84 @@
-# bezierpoints
-PIXI graphics function to generate a smooth line through specific points
+## settingspanel.js
+hideable UI to change game settings during runtime
 
-## Live Example and Sample code
-https://davidfig.github.io/bezierpoints/
+## Live Example
+https://davidfig.github.io/settingspanel/
 
 ## Installation
 
-    npm i --save bezierpoints
+    npm i settingspanel
 
-## API
+# API Reference
+<a name="SettingsPanel"></a>
 
-/**
- * @param {PIXI.Graphics} g
- * @param {number[] | object[]} points [x1, y1, x2, y2, ...] or [{x, y}, {x, y}, ...]
- */
-function bezierPoints(g, points)
+## SettingsPanel
+**Kind**: global class  
 
-## quick usage
+* [SettingsPanel](#SettingsPanel)
+    * [new SettingsPanel([options])](#new_SettingsPanel_new)
+    * [.button(text, callback, [options])](#SettingsPanel+button)
+    * [.input(label, callback, [options])](#SettingsPanel+input)
+    * [.hide()](#SettingsPanel+hide)
+    * [.show()](#SettingsPanel+show)
 
-var bezierpoints = require('bezierpoints');
+<a name="new_SettingsPanel_new"></a>
 
-var renderer = PIXI.autoDetectRenderer(800, 600);
-document.body.appendChild(renderer.view);
+### new SettingsPanel([options])
 
-var g = new PIXI.Graphics();
-g.lineStyle(10, 0xff0000);
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [options] | <code>object</code> |  |  |
+| [options.style] | <code>object</code> |  | CSS style to apply to the parent div |
+| [options.parent] | <code>object</code> | <code>document.body</code> | where to append div |
+| [options.color] | <code>string</code> | <code>&quot;&#x27;white&#x27;&quot;</code> | default foreground |
+| [options.background] | <code>string</code> | <code>&quot;&#x27;black&#x27;&quot;</code> | default background |
+| [options.open] | <code>boolean</code> | <code>true</code> | show when starting |
 
-bezierpoints(g, [53, 100, 90, 150, 180, 32, 250, 23]);
+<a name="SettingsPanel+button"></a>
 
-renderer.render(g);
+### settingsPanel.button(text, callback, [options])
+adds a button with callback
+
+**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| text | <code>string</code> | to display |
+| callback | <code>function</code> | on button click; if returns a value, then replaces button text with [text + result] |
+| [options] | <code>object</code> |  |
+| [options.original] | <code>object</code> | original settings for button - sets text as [text + original]; change through callback (see above) |
+| [options.style] | <code>object</code> | CSS for button |
+
+<a name="SettingsPanel+input"></a>
+
+### settingsPanel.input(label, callback, [options])
+adds an input panel
+
+**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| label | <code>string</code> | text |
+| callback | <code>function</code> | on change input |
+| [options] | <code>object</code> |  |
+| [options.original] | <code>object</code> | original settings for input |
+| [options.style] | <code>object</code> | CSS for button |
+| [options.sameLine] | <code>boolean</code> | same line for label and text |
+| [options.size] | <code>number</code> | size (number of characters) of input box |
+
+<a name="SettingsPanel+hide"></a>
+
+### settingsPanel.hide()
+hides the SettingsPanel
+
+**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+<a name="SettingsPanel+show"></a>
+
+### settingsPanel.show()
+shows the SettingsPanel
+
+**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+
+* * *
+
+Copyright (c) 2017 YOPEY YOPEY LLC - MIT License - Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)
