@@ -12,6 +12,7 @@ class SettingsPanel
      * @param {string} [options.color='white'] default foreground
      * @param {string} [options.background='black'] default background
      * @param {boolean} [options.open=true] show when starting
+     * @param {string} [options.side='right'] change side: 'left' or 'right'
      */
     constructor(options)
     {
@@ -31,7 +32,6 @@ class SettingsPanel
         const styles = {
             'position': 'fixed',
             'color': this.color,
-            'right': 0,
             'bottom': 0,
             'zIndex': 100,
             'textAlign': 'center',
@@ -39,6 +39,7 @@ class SettingsPanel
         };
         this._topSetup();
         this._setStyles(this.div, styles, options.style);
+        this.side(options.side);
         this.open = typeof options.open !== 'undefined' ? options.open : true;
     }
 
@@ -48,6 +49,8 @@ class SettingsPanel
      * @param {function} callback on button click; if returns a value, then replaces button text with [text + result]
      * @param {object} [options]
      * @param {object} [options.original] original settings for button - sets text as [text + original]; change through callback (see above)
+     * @param {string} [options.color] foreground color
+     * @param {string} [options.background] background color
      * @param {object} [options.style] CSS for button
      */
     button(text, callback, options)
@@ -56,7 +59,8 @@ class SettingsPanel
         const div = document.createElement('div');
         this.div.appendChild(div);
         div.callback = callback;
-        div.onclick = this._buttonCallback.bind(div);
+        div.addEventListener('click', this._buttonCallback.bind(div));
+        div.addEventListener('touchstart', this._buttonCallback.bind(div));
         div.innerHTML = text + (options.original ? options.original : '');
         div.text = text;
         const styles = {
@@ -66,6 +70,14 @@ class SettingsPanel
             'cursor': 'pointer',
             'userSelect': 'none'
         };
+        if (options.background)
+        {
+            styles['background'] = options.background;
+        }
+        if (options.color)
+        {
+            styles['color'] = options.color;
+        }
         this._setStyles(div, styles, options.style);
         return div;
     }
@@ -88,6 +100,8 @@ class SettingsPanel
      * @param {function} callback on change input
      * @param {object} [options]
      * @param {object} [options.original] original settings for input
+     * @param {string} [options.color] foreground color
+     * @param {string} [options.background] background color
      * @param {object} [options.style] CSS for button
      * @param {boolean} [options.sameLine] same line for label and text
      * @param {number} [options.size] size (number of characters) of input box
@@ -104,6 +118,14 @@ class SettingsPanel
             'cursor': 'pointer',
             'userSelect': 'none'
         };
+        if (options.background)
+        {
+            styles['background'] = options.background;
+        }
+        if (options.color)
+        {
+            styles['color'] = options.color;
+        }
         this._setStyles(div, styles, options.style);
         const label = document.createElement(options.sameLine ? 'span' : 'div');
         div.callback = callback;
@@ -169,7 +191,8 @@ class SettingsPanel
             'cursor': 'pointer'
         };
         this._setStyles(div, styles);
-        div.onclick = this._toggleTop.bind(this);
+        div.addEventListener('click', this._toggleTop.bind(this));
+        div.addEventListener('touchstart', this._toggleTop.bind(this));
         this._topShow();
         div.innerHTML = this.open ? '&#9650;' : '&#9660;';
     }
@@ -217,6 +240,24 @@ class SettingsPanel
         else
         {
             this.hide();
+        }
+    }
+
+    /**
+     * change side of panel
+     * @param {string} side - 'left' or 'right'
+     */
+    side(side)
+    {
+        if (side === 'left')
+        {
+            this.div.style.left = 0;
+            this.div.style.right = null;
+        }
+        else
+        {
+            this.div.style.left = null;
+            this.div.style.right = 0;
         }
     }
 }
