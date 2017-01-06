@@ -20,6 +20,7 @@ https://davidfig.github.io/settingspanel/
     * [.input(label, callback, [options])](#SettingsPanel+input)
     * [.hide()](#SettingsPanel+hide)
     * [.show()](#SettingsPanel+show)
+    * [.side(side)](#SettingsPanel+side)
 
 <a name="new_SettingsPanel_new"></a>
 
@@ -33,6 +34,7 @@ https://davidfig.github.io/settingspanel/
 | [options.color] | <code>string</code> | <code>&quot;&#x27;white&#x27;&quot;</code> | default foreground |
 | [options.background] | <code>string</code> | <code>&quot;&#x27;black&#x27;&quot;</code> | default background |
 | [options.open] | <code>boolean</code> | <code>true</code> | show when starting |
+| [options.side] | <code>string</code> | <code>&quot;&#x27;right&#x27;&quot;</code> | change side: 'left' or 'right' |
 
 <a name="SettingsPanel+button"></a>
 
@@ -47,6 +49,8 @@ adds a button with callback
 | callback | <code>function</code> | on button click; if returns a value, then replaces button text with [text + result] |
 | [options] | <code>object</code> |  |
 | [options.original] | <code>object</code> | original settings for button - sets text as [text + original]; change through callback (see above) |
+| [options.color] | <code>string</code> | foreground color |
+| [options.background] | <code>string</code> | background color |
 | [options.style] | <code>object</code> | CSS for button |
 
 <a name="SettingsPanel+input"></a>
@@ -62,6 +66,8 @@ adds an input panel
 | callback | <code>function</code> | on change input |
 | [options] | <code>object</code> |  |
 | [options.original] | <code>object</code> | original settings for input |
+| [options.color] | <code>string</code> | foreground color |
+| [options.background] | <code>string</code> | background color |
 | [options.style] | <code>object</code> | CSS for button |
 | [options.sameLine] | <code>boolean</code> | same line for label and text |
 | [options.size] | <code>number</code> | size (number of characters) of input box |
@@ -78,6 +84,17 @@ hides the SettingsPanel
 shows the SettingsPanel
 
 **Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+<a name="SettingsPanel+side"></a>
+
+### settingsPanel.side(side)
+change side of panel
+
+**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| side | <code>string</code> | 'left' or 'right' |
+
 
 * * *
 

@@ -1,11 +1,10 @@
 {
   "name": "settingspanel",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "hideable UI to change game settings during runtime",
   "main": "index.min.js",
   "scripts": {
-    "docs": "node_modules/.bin/jsdoc2md --template README.hbs *.js > README.md",
-    "publish": "npm run docs && npm publish"
+    "docs": "node_modules/.bin/jsdoc2md --template README.hbs *.js > README.md"
   },
   "repository": {
     "type": "git",
