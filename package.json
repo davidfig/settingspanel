@@ -16,9 +16,6 @@
     "url": "https://github.com/davidfig/settingspanel/issues"
   },
   "homepage": "https://github.com/davidfig/settingspanel#readme",
-  "dependencies": {
-    "touches": "^1.2.0"
-  },
   "devDependencies": {
     "jsdoc-to-markdown": "^2.0.1"
   }
