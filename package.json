@@ -2,7 +2,7 @@
   "name": "settingspanel",
   "version": "1.1.2",
   "description": "hideable UI to change game settings during runtime",
-  "main": "index.min.js",
+  "main": "settingspanel.js",
   "scripts": {
     "docs": "node_modules/.bin/jsdoc2md --template README.hbs *.js > README.md"
   },
