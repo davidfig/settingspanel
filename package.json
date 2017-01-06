@@ -1,0 +1,24 @@
+{
+  "name": "settingspanel",
+  "version": "1.0.0",
+  "description": "hideable UI to change game settings during runtime",
+  "main": "index.min.js",
+  "scripts": {
+    "test": "live-server",
+    "watch": "watchify index.js -o index.min.js",
+    "compile": "browserify index.js -o index.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidfig/settingspanel.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidfig/settingspanel/issues"
+  },
+  "homepage": "https://github.com/davidfig/settingspanel#readme",
+  "dependencies": {
+    "highlight.js": "^9.9.0"
+  }
+}
