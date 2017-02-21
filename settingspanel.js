@@ -37,10 +37,10 @@ class SettingsPanel
             'textAlign': 'center',
             'opacity': 0.85
         };
+        this.open = typeof options.open !== 'undefined' ? options.open : true;
         this._topSetup();
         this._setStyles(this.div, styles, options.style);
         this.side(options.side);
-        this.open = typeof options.open !== 'undefined' ? options.open : true;
     }
 
     /**
@@ -79,6 +79,7 @@ class SettingsPanel
             styles['color'] = options.color;
         }
         this._setStyles(div, styles, options.style);
+        this._update();
         return div;
     }
 
@@ -144,6 +145,7 @@ class SettingsPanel
         }
         div.input.defaultValue = typeof options.original !== 'undefined' ? options.original : null;
         div.input.onchange = this._inputCallback.bind(div);
+        this._update();
         return div;
     }
 
@@ -204,6 +206,22 @@ class SettingsPanel
     _topShow()
     {
         this.top.innerHTML = this.open ? '&#9660;' : '&#9650;';
+    }
+
+    /**
+     * updates the show/hide status after adding an element
+     * @private
+     */
+    _update()
+    {
+        if (this.open)
+        {
+            this.show();
+        }
+        else
+        {
+            this.hide();
+        }
     }
 
     /**
