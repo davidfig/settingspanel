@@ -1,6 +1,6 @@
 {
   "name": "settingspanel",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "hideable UI to change game settings during runtime",
   "main": "settingspanel.js",
   "scripts": {
@@ -18,5 +18,8 @@
   "homepage": "https://github.com/davidfig/settingspanel#readme",
   "devDependencies": {
     "jsdoc-to-markdown": "^2.0.1"
+  },
+  "dependencies": {
+    "clicked": "^1.1.0"
   }
 }

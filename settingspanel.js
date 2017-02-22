@@ -1,6 +1,8 @@
 // SettingsPanel - a debug panel for changing game settings
 // hideable UI to change game settings during runtime
 
+const clicked = require('clicked');
+
 let _id = 1;
 
 class SettingsPanel
@@ -59,8 +61,7 @@ class SettingsPanel
         const div = document.createElement('div');
         this.div.appendChild(div);
         div.callback = callback;
-        div.addEventListener('click', this._buttonCallback.bind(div));
-        div.addEventListener('touchstart', this._buttonCallback.bind(div));
+        clicked(div, this._buttonCallback.bind(div));
         div.innerHTML = text + (options.original ? options.original : '');
         div.text = text;
         const styles = {
@@ -193,8 +194,7 @@ class SettingsPanel
             'cursor': 'pointer'
         };
         this._setStyles(div, styles);
-        div.addEventListener('click', this._toggleTop.bind(this));
-        div.addEventListener('touchstart', this._toggleTop.bind(this));
+        clicked(div, this._toggleTop.bind(this));
         this._topShow();
         div.innerHTML = this.open ? '&#9650;' : '&#9660;';
     }
