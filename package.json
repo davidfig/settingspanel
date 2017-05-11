@@ -1,6 +1,6 @@
 {
   "name": "settingspanel",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "hideable UI to change game settings during runtime",
   "main": "settingspanel.js",
   "scripts": {

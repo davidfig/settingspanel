@@ -166,13 +166,13 @@ class SettingsPanel
      */
     _setStyles(div, styles1, styles2)
     {
-        for (const style in styles1)
+        for (let style in styles1)
         {
             div.style[style] = styles1[style];
         }
         if (styles2)
         {
-            for (const style in styles2)
+            for (let style in styles2)
             {
                 div.style[style] = styles2[style];
             }
