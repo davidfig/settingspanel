@@ -12,6 +12,8 @@ https://davidfig.github.io/settingspanel/
 <a name="SettingsPanel"></a>
 
 ## SettingsPanel
+a settings panel for changing and watching parameters during runtime
+
 **Kind**: global class  
 
 * [SettingsPanel](#SettingsPanel)
@@ -41,14 +43,14 @@ https://davidfig.github.io/settingspanel/
 ### settingsPanel.button(text, callback, [options])
 adds a button with callback
 
-**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+**Kind**: instance method of [<code>SettingsPanel</code>](#SettingsPanel)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | text | <code>string</code> | to display |
-| callback | <code>function</code> | on button click; if returns a value, then replaces button text with [text + result] |
+| callback | <code>function</code> | on button click if returns a value, then replaces button text with [text + result] |
 | [options] | <code>object</code> |  |
-| [options.original] | <code>object</code> | original settings for button - sets text as [text + original]; change through callback (see above) |
+| [options.original] | <code>object</code> | original settings for button - sets text as [text + original] change through callback (see above) |
 | [options.color] | <code>string</code> | foreground color |
 | [options.background] | <code>string</code> | background color |
 | [options.style] | <code>object</code> | CSS for button |
@@ -58,7 +60,7 @@ adds a button with callback
 ### settingsPanel.input(label, callback, [options])
 adds an input panel
 
-**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+**Kind**: instance method of [<code>SettingsPanel</code>](#SettingsPanel)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -77,19 +79,19 @@ adds an input panel
 ### settingsPanel.hide()
 hides the SettingsPanel
 
-**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+**Kind**: instance method of [<code>SettingsPanel</code>](#SettingsPanel)  
 <a name="SettingsPanel+show"></a>
 
 ### settingsPanel.show()
 shows the SettingsPanel
 
-**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+**Kind**: instance method of [<code>SettingsPanel</code>](#SettingsPanel)  
 <a name="SettingsPanel+side"></a>
 
 ### settingsPanel.side(side)
 change side of panel
 
-**Kind**: instance method of <code>[SettingsPanel](#SettingsPanel)</code>  
+**Kind**: instance method of [<code>SettingsPanel</code>](#SettingsPanel)  
 
 | Param | Type | Description |
 | --- | --- | --- |

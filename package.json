@@ -1,10 +1,13 @@
 {
   "name": "settingspanel",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "hideable UI to change game settings during runtime",
   "main": "settingspanel.js",
   "scripts": {
-    "docs": "node_modules/.bin/jsdoc2md --template README.hbs *.js > README.md"
+    "compile": "./node_modules/.bin/browserify docs/code.js -o docs/index.js",
+    "test": "./node_modules/.bin/budo docs/code.js:index.js --dir docs --live",
+    "docs": "node_modules/.bin/jsdoc2md --template README.hbs *.js > README.md",
+    "prepublishOnly": "npm run compile && npm run docs"
   },
   "repository": {
     "type": "git",
@@ -17,9 +20,12 @@
   },
   "homepage": "https://github.com/davidfig/settingspanel#readme",
   "devDependencies": {
-    "jsdoc-to-markdown": "^2.0.1"
+    "budo": "^11.2.0",
+    "fork-me-github": "^1.2.0",
+    "highlight.js": "^9.12.0",
+    "jsdoc-to-markdown": "^4.0.1"
   },
   "dependencies": {
-    "clicked": "^1.1.0"
+    "clicked": "^2.0.0"
   }
 }

@@ -1,10 +1,10 @@
-// SettingsPanel - a debug panel for changing game settings
-// hideable UI to change game settings during runtime
+const clicked = require('clicked')
 
-const clicked = require('clicked');
+let _id = 1
 
-let _id = 1;
-
+/**
+ * a settings panel for changing and watching parameters during runtime
+ */
 class SettingsPanel
 {
     /**
@@ -18,19 +18,19 @@ class SettingsPanel
      */
     constructor(options)
     {
-        options = options || {};
-        this.div = document.createElement('div');
+        options = options || {}
+        this.div = document.createElement('div')
         if (options.parent)
         {
-            options.parent.appendChild(this.div);
+            options.parent.appendChild(this.div)
         }
         else
         {
-            document.body.appendChild(this.div);
+            document.body.appendChild(this.div)
         }
-        this.div.id = 'SettingsPanel #' + _id++;
-        this.color = options.color || 'white';
-        this.background = options.background || 'black';
+        this.div.id = 'SettingsPanel #' + _id++
+        this.color = options.color || 'white'
+        this.background = options.background || 'black'
         const styles = {
             'position': 'fixed',
             'color': this.color,
@@ -38,60 +38,60 @@ class SettingsPanel
             'zIndex': 100,
             'textAlign': 'center',
             'opacity': 0.85
-        };
-        this.open = typeof options.open !== 'undefined' ? options.open : true;
-        this._topSetup();
-        this._setStyles(this.div, styles, options.style);
-        this.side(options.side);
+        }
+        this.open = typeof options.open !== 'undefined' ? options.open : true
+        this._topSetup()
+        this._setStyles(this.div, styles, options.style)
+        this.side(options.side)
     }
 
     /**
      * adds a button with callback
      * @param {string} text to display
-     * @param {function} callback on button click; if returns a value, then replaces button text with [text + result]
+     * @param {function} callback on button click if returns a value, then replaces button text with [text + result]
      * @param {object} [options]
-     * @param {object} [options.original] original settings for button - sets text as [text + original]; change through callback (see above)
+     * @param {object} [options.original] original settings for button - sets text as [text + original] change through callback (see above)
      * @param {string} [options.color] foreground color
      * @param {string} [options.background] background color
      * @param {object} [options.style] CSS for button
      */
     button(text, callback, options)
     {
-        options = options || {};
-        const div = document.createElement('div');
-        this.div.appendChild(div);
-        div.callback = callback;
-        clicked(div, this._buttonCallback.bind(div));
-        div.innerHTML = text + (options.original ? options.original : '');
-        div.text = text;
+        options = options || {}
+        const div = document.createElement('div')
+        this.div.appendChild(div)
+        div.callback = callback
+        clicked(div, this._buttonCallback.bind(div))
+        div.innerHTML = text + (options.original ? options.original : '')
+        div.text = text
         const styles = {
             'background': this.background,
             'padding': '1em',
             'borderBottom': '1px white solid',
             'cursor': 'pointer',
             'userSelect': 'none'
-        };
+        }
         if (options.background)
         {
-            styles['background'] = options.background;
+            styles['background'] = options.background
         }
         if (options.color)
         {
-            styles['color'] = options.color;
+            styles['color'] = options.color
         }
-        this._setStyles(div, styles, options.style);
-        this._update();
-        return div;
+        this._setStyles(div, styles, options.style)
+        this._update()
+        return div
     }
 
     _buttonCallback()
     {
         if (this.callback)
         {
-            const result = this.callback();
+            const result = this.callback()
             if (typeof result !== 'undefined')
             {
-                this.innerHTML = this.text + result;
+                this.innerHTML = this.text + result
             }
         }
     }
@@ -110,44 +110,44 @@ class SettingsPanel
      */
     input(text, callback, options)
     {
-        options = options || {};
-        const div = document.createElement('div');
-        this.div.appendChild(div);
+        options = options || {}
+        const div = document.createElement('div')
+        this.div.appendChild(div)
         const styles = {
             'background': this.background,
             'padding': '1em',
             'borderBottom': '1px white solid',
             'cursor': 'pointer',
             'userSelect': 'none'
-        };
+        }
         if (options.background)
         {
-            styles['background'] = options.background;
+            styles['background'] = options.background
         }
         if (options.color)
         {
-            styles['color'] = options.color;
+            styles['color'] = options.color
         }
-        this._setStyles(div, styles, options.style);
-        const label = document.createElement(options.sameLine ? 'span' : 'div');
-        div.callback = callback;
-        div.appendChild(label);
-        label.innerHTML = text;
-        div.input = document.createElement('input');
-        div.appendChild(div.input);
-        div.input.style.fontSize = '1em';
-        div.input.style.textAlign = 'right';
-        div.input.style.padding = 0;
-        div.input.style.background = this.background;
-        div.input.style.color = 'white';
+        this._setStyles(div, styles, options.style)
+        const label = document.createElement(options.sameLine ? 'span' : 'div')
+        div.callback = callback
+        div.appendChild(label)
+        label.innerHTML = text
+        div.input = document.createElement('input')
+        div.appendChild(div.input)
+        div.input.style.fontSize = '1em'
+        div.input.style.textAlign = 'right'
+        div.input.style.padding = 0
+        div.input.style.background = this.background
+        div.input.style.color = 'white'
         if (options.size)
         {
-            div.input.style.width = options.size + 'em';
+            div.input.style.width = options.size + 'em'
         }
-        div.input.defaultValue = typeof options.original !== 'undefined' ? options.original : null;
-        div.input.onchange = this._inputCallback.bind(div);
-        this._update();
-        return div;
+        div.input.defaultValue = typeof options.original !== 'undefined' ? options.original : null
+        div.input.onchange = this._inputCallback.bind(div)
+        this._update()
+        return div
     }
 
     /**
@@ -156,7 +156,7 @@ class SettingsPanel
      */
     _inputCallback()
     {
-        this.callback(this.input.value);
+        this.callback(this.input.value)
     }
 
     /**
@@ -168,13 +168,13 @@ class SettingsPanel
     {
         for (let style in styles1)
         {
-            div.style[style] = styles1[style];
+            div.style[style] = styles1[style]
         }
         if (styles2)
         {
             for (let style in styles2)
             {
-                div.style[style] = styles2[style];
+                div.style[style] = styles2[style]
             }
         }
     }
@@ -185,18 +185,18 @@ class SettingsPanel
      */
     _topSetup()
     {
-        const div = this.top = document.createElement('div');
-        this.div.appendChild(div);
+        const div = this.top = document.createElement('div')
+        this.div.appendChild(div)
         const styles = {
             'margin': 'auto 0',
             'color': this.background,
             'fontSize': '150%',
             'cursor': 'pointer'
-        };
-        this._setStyles(div, styles);
-        clicked(div, this._toggleTop.bind(this));
-        this._topShow();
-        div.innerHTML = this.open ? '&#9650;' : '&#9660;';
+        }
+        this._setStyles(div, styles)
+        clicked(div, this._toggleTop.bind(this))
+        this._topShow()
+        div.innerHTML = this.open ? '&#9650;' : '&#9660;'
     }
 
     /**
@@ -205,7 +205,7 @@ class SettingsPanel
      */
     _topShow()
     {
-        this.top.innerHTML = this.open ? '&#9660;' : '&#9650;';
+        this.top.innerHTML = this.open ? '&#9660;' : '&#9650;'
     }
 
     /**
@@ -216,11 +216,11 @@ class SettingsPanel
     {
         if (this.open)
         {
-            this.show();
+            this.show()
         }
         else
         {
-            this.hide();
+            this.hide()
         }
     }
 
@@ -229,9 +229,9 @@ class SettingsPanel
      */
     hide()
     {
-        this.open = false;
-        this.div.style.bottom = -(this.div.offsetHeight - this.top.offsetHeight) + 'px';
-        this._topShow();
+        this.open = false
+        this.div.style.bottom = -(this.div.offsetHeight - this.top.offsetHeight) + 'px'
+        this._topShow()
     }
 
     /**
@@ -239,9 +239,9 @@ class SettingsPanel
      */
     show()
     {
-        this.open = true;
-        this.div.style.bottom = 0;
-        this._topShow();
+        this.open = true
+        this.div.style.bottom = 0
+        this._topShow()
     }
 
     /**
@@ -250,14 +250,14 @@ class SettingsPanel
      */
     _toggleTop()
     {
-        this.open = !this.open;
+        this.open = !this.open
         if (this.open)
         {
-            this.show();
+            this.show()
         }
         else
         {
-            this.hide();
+            this.hide()
         }
     }
 
@@ -269,15 +269,15 @@ class SettingsPanel
     {
         if (side === 'left')
         {
-            this.div.style.left = 0;
-            this.div.style.right = null;
+            this.div.style.left = 0
+            this.div.style.right = null
         }
         else
         {
-            this.div.style.left = null;
-            this.div.style.right = 0;
+            this.div.style.left = null
+            this.div.style.right = 0
         }
     }
 }
 
-module.exports = SettingsPanel;
+module.exports = SettingsPanel
